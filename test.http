@@ -1,0 +1,18 @@
+
+POST http://localhost:3000/usuarios 
+Content-Type: application/json
+
+{
+    "nombre": "Blanka", 
+    "edad": "32", 
+    "lugarProcedencia": "Brasil"
+}
+
+###
+
+GET http://localhost:3000/usuarios/Ryu
+
+
+
+
+
