@@ -64,6 +64,26 @@ app.post('/usuarios', (req, res) => {
     res.redirect('/');
 })
 
+app.put('/usuarios', (req, res) => {
+    const nombre = req.params.nombre
+    const actualizarUsuarios = usuarios.findIndex(usuario => usuario.nombre === nombre)
+    if(!actualizarUsuarios === -1) {
+        res.status(404).send('usuario no encontrado')
+    }else{
+        usuarios[actualizarUsuarios].nombre   = req.body.nombre,
+        usuarios[actualizarUsuarios].edad = req.body.edad,
+        usuarios[actualizarUsuarios].lugarProcedencia = req.body.lugarProcedencia
+        res.json(usuarios[actualizarUsuarios])
+    }
+    
+})
+
+app.delete('/usuarios/:nombre', (req, res) => {
+    const nombre = req.params.nombre
+    usuarios = usuarios.filter(user => user.nombre != nombre)
+    res.json({mensaje: 'usuario eliminado'})
+})
+
 app.listen(3000, () => {
     console.log('Express esta escuchando en el puerto http://localhost:3000');
 });
